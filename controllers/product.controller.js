@@ -50,7 +50,6 @@ exports.getProduct = async (req, res) => {
 
 //GET ALL PRODUCTS
 exports.getAllProducts = async (req, res) => {
-  const qNew = req.query.new;
   const qCategory = req.query.categories;
   const qSubCat = req.query.subCat;
   const qBrand = req.query.brand;
@@ -59,11 +58,6 @@ exports.getAllProducts = async (req, res) => {
     let query = {
       $and: [],
     };
-
-    // if (qNew) {
-    // category = await categories.find().sort({ createdAt: -1 }).limit(5);
-    // }
-    // else
     if (qCategory) {
       query.$and.push({
         categories: {
@@ -81,20 +75,37 @@ exports.getAllProducts = async (req, res) => {
           brand: { $in: [qBrand] },
         });
       }
-
-
-
-
+      products = await Product.find(query);
+    } else {
+      products = await Product.find();
     }
-    // db.example.find( {
-    //   $and: [
-    //   { x: { $ne: 0 } },
-    //   { $expr: { $eq: [ { $divide: [ 1, "$x" ] }, 3 ] } }
-    //   ]
-    //   } )
-    products = await Product.find(query);
+
     res.status(200).json(products);
   } catch (err) {
     res.status(500).json(err);
   }
 };
+
+// exports.getAllProducts = async (req, res) => {
+//   const qNew = req.query.new;
+//   const qCategory = req.query.category;
+//   try {
+//     let products;
+
+//     if (qNew) {
+//       products = await Product.find().sort({ createdAt: -1 }).limit(5);
+//     } else if (qCategory) {
+//       products = await Product.find({
+//         categories: {
+//           $in: [qCategory],
+//         },
+//       });
+//     } else {
+//       products = await Product.find();
+//     }
+
+//     res.status(200).json(products);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// };

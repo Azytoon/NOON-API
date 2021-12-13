@@ -41,7 +41,11 @@ exports.deleteOrder = async (req, res) => {
 //GET USER ORDERS
 exports.getOrder = async (req, res) => {
   try {
+<<<<<<< HEAD
     const orders = await Order.find({ userId: req.params.userId });
+=======
+    const orders = await Order.find({ userId: req.params.id });
+>>>>>>> c05e154471e75ef923c4ab8eb9745f8d6f632a70
     res.status(200).json(orders);
   } catch (err) {
     res.status(500).json(err);

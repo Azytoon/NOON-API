@@ -41,7 +41,11 @@ exports.deleteCart = async (req, res) => {
 //GET USER CART
 exports.getCart = async (req, res) => {
   try {
+<<<<<<< HEAD
     const cart = await Cart.findOne({ userId: req.params.userId });
+=======
+    const cart = await Cart.findOne({ userId: req.params.id });
+>>>>>>> c05e154471e75ef923c4ab8eb9745f8d6f632a70
     res.status(200).json(cart);
   } catch (err) {
     res.status(500).json(err);

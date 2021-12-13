@@ -10,8 +10,8 @@ const {
 router.post("/", verifyToken, order.createOrder);
 router.get("/", verifyTokenAndAdmin, order.getAllUsersOrders);
 router.get("/income", verifyTokenAndAdmin, order.getMonthlyIncome);
-router.get("/find/:userId", verifyTokenAndAuthorization, order.getOrder);
-router.put("/edit/:id", verifyTokenAndAdmin, order.updateOrder);
-router.delete("/delete/:id", verifyTokenAndAdmin, order.deleteOrder);
+router.get("/find/:id", verifyTokenAndAuthorization, order.getOrder);
+router.put("/edit/:id", verifyTokenAndAuthorization, order.updateOrder);
+router.delete("/delete/:id", verifyTokenAndAuthorization, order.deleteOrder);
 
 module.exports = router;

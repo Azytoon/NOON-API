@@ -54,10 +54,14 @@ exports.getUserStats = async (req, res) => {
 //UPDATE
 exports.updateUser = async (req, res) => {
   if (req.body.password) {
+<<<<<<< HEAD
     req.body.password = bcrypt.hashSync(
       req.body.password,
       porcess.env.PASS_SECRET
     );
+=======
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
+>>>>>>> c05e154471e75ef923c4ab8eb9745f8d6f632a70
   }
 
   try {
